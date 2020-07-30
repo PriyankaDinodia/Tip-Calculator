@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button{
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        
+    #box {
+            height: 500px;
+            width: 360px;
+            margin: 100px auto;
+            background: #f7f7f7;
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+        }
+
+    h2 {
+            background: #1F030C;
+            color: white;
+            padding: 10px 100px;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: lighter;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+    body {
+            font-family: Roboto;
+            background: #8E0E00;
+        }
+        
+    p {
+            padding-left: 15px;
+        }
+        
+
+    input {
+            padding-left: 20px;
+        }
+
+    #money {
+            font-size: 14px;
+            color: red;
+            background-color: #f7f7f7;
+            width: 60%;
+            padding: 5px 5px 8px 8px;
+        }
+
+    #bill {
+            background: #fff;
+            border: 3px solid #2980b9;
+            outline: none;
+        }
+
+    #myInput {
+            width: 60%;
+            padding: 5px 5px 8px 8px;
+            margin-left: 20px;
+            color: red;
+            background-color: #f7f7f7;
+            font-size: 14px;
+        }
+
+
+    #dropdown {
+            padding: 13px 13px 20px 20px;
+            margin-left: 20px;
+            font-size: 25px;
+        }
+
+    button {
+            text-transform: uppercase;
+            font-weight: bold;
+            display: block;
+            margin: 30px auto;
+            background: #AD133A;
+            border-radius: 5px;
+            width: 200px;
+            height: 50px;
+            font-size: 17px;
+            color: white;
+        }
+
+    button:hover {
+            background: #4c2827;
+            border-bottom-color: #111;
+        }
+
+    button:active {
+            position: relative;
+            top: 1px;
+        }
+
+    #Tip {
+            font-size: 30px;
+            margin-top: 5px;
+            text-align: center;
+            display : none;
+        }
+
+    #Tip:before {
+            content: "Tip amount";
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+            text-transform: uppercase;
+        }
+
+</style>
+</head>
+<body>
+<div id= "box">
+    <h2>TIP CALCULATOR</h2>
+
+
+<p>How much was your bill?</p>
+
+<p>Rs.<input type="number"  min="0" placeholder="Bill Amount" 
+     id="money" class="CsstxtChar" /></p>
+
+<p>How was your service?</p>
+<form>
+    <select id="dropdown" style="font-size:25px" >
+        <option value = "options" disabled selected>--Choose an Option--</option>
+        <option value = "0.1">Bad</option>
+        <option value = "0.2">Average</option>
+        <option value = "0.3">Good</option>
+    </select>
+</form>
+ 
+
+<p>How many people are sharing the bill?</p>
+<p><input type="number" min= "1" step="1"
+    onkeypress="return event.charCode >= 48 && event.charCode <= 57" 
+    placeholder="Number of People"
+     id="myInput" />People </p>
+
+
+<button type="button" id="calculate" onclick="cal()">CALCULATE!</button>
+<p id= "Tip"> The Total tip is: </p>
+</div>
+
+<script>
+    function cal()
+    {
+    var bill = document.getElementById("money").value;
+    bill = Math.round(bill * 100)/100;
+    bill = bill.toFixed(2);
+    var service = document.getElementById("dropdown").value;
+    var people = document.getElementById("myInput").value;
+   
+    var total; 
+    total = (bill * service)/ people;
+    total = Math.round(total * 100)/100;
+    total = total.toFixed(2)
+
+    document.getElementById("Tip").style.display = "block";
+    document.getElementById("Tip").innerHTML = "Your tip is: Rs. " + total + "each";
+    }
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
